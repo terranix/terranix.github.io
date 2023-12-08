@@ -1,0 +1,11 @@
+[book]
+authors = ["Ingolf Wagner"]
+language = "en"
+multilingual = false
+src = "src"
+title = "terranix"
+
+
+[output.html]
+no-section-label = true
+
