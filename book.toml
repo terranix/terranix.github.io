@@ -7,5 +7,10 @@ title = "terranix"
 
 
 [output.html]
+default-theme = "terranix"
 no-section-label = true
+git-repository-url = "https://github.com/terranix/terranix"
+git-repository-icon = "fa-github"
 
+[output.html.print]
+enable = false

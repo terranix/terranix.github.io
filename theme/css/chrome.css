@@ -108,7 +108,18 @@ a > .hljs {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    //display: flex;
 }
+
+.menu-title span {
+    position: relative;
+}
+
+.menu-img {
+    height: calc(0.6 * var(--menu-bar-height)) ;
+}
+
 .js .menu-title {
     cursor: pointer;
 }

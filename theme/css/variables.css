@@ -12,6 +12,51 @@
 
 /* Themes */
 
+.terranix {
+    --bg: #fbf1c7;
+    --fg: #282828;
+
+    --sidebar-bg: #fbf1c7;
+    --sidebar-fg: #282828;
+    --sidebar-non-existant: #3c3836;
+    --sidebar-active: #d79921;
+    --sidebar-spacer: #282828;
+
+    --scrollbar: var(--sidebar-fg);
+
+    --icons:  #3c3836;
+    --icons-hover: #665c54;
+
+    --links: #458588;
+
+    --inline-code-color: #8f3f71;
+
+    --theme-popup-bg: #f2e5bc;
+    --theme-popup-border: #ebdbb2;
+    --theme-hover: #d5c4a1;
+
+
+    --quote-bg: hsl(226, 15%, 17%);
+    --quote-border: #3c3836;
+
+    --warning-border: #cc241d;
+
+    --table-border-color: #a89984;
+    --table-header-bg: #d5c4a1;
+    --table-alternate-bg: #d5c4a1;
+
+    --searchbar-border-color: #d5c4a1;
+    --searchbar-bg: #f2e5bc;
+    --searchbar-fg: #458588;
+    --searchbar-shadow-color: #d5c4a1;
+    --searchresults-header-fg: #3c3836;
+    --searchresults-border-color: #3c3836;
+    --searchresults-li-bg: #3c3836;
+    --search-mark-bg: #458588;
+
+    --color-scheme: light;
+}
+
 .ayu {
     --bg: hsl(210, 25%, 8%);
     --fg: #c5c5c5;
@@ -232,7 +277,7 @@
     --color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     .light.no-js {
         --bg: hsl(200, 7%, 8%);
         --fg: #98a3ad;

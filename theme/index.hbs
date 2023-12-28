@@ -151,6 +151,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="terranix">Terranix</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -164,7 +165,11 @@
                         {{/if}}
                     </div>
 
-                    <h1 class="menu-title">{{ book_title }}</h1>
+
+                    <h1 class="menu-title">
+                    <img src="{{ path_to_root }}favicon.svg" class="menu-img">
+                    <span >{{ book_title }}</span>
+                    </h1>
 
                     <div class="right-buttons">
                         {{#if print_enable}}

@@ -333,6 +333,11 @@ function playground_text(playground, hidden = true) {
             stylesheets.highlight.disabled = true;
 
             ace_theme = "ace/theme/tomorrow_night";
+        } else if (theme == 'terranix') {
+            stylesheets.ayuHighlight.disabled = true;
+            stylesheets.tomorrowNight.disabled = true;
+            stylesheets.highlight.disabled = false;
+            ace_theme = "ace/theme/tomorrow_night";
         } else if (theme == 'ayu') {
             stylesheets.ayuHighlight.disabled = false;
             stylesheets.tomorrowNight.disabled = true;
