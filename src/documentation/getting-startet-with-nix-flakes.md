@@ -2,7 +2,7 @@
 make dependency management of modules and packages much easier.
 
 Deeper look at terranix and nix flakes is done in the
-[flake chapter](documentation/flakes.md)
+[flake chapter](flakes.md)
 
 ## nix build
 
