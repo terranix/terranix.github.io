@@ -28,7 +28,7 @@
               pkgs.black
               pkgs.nodePackages.prettier
             ];
-            text = "treefmt";
+            text = ''treefmt "$@"'';
           };
       };
       flake = { };

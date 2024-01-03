@@ -1,0 +1,10 @@
+name: nix-fmt
+on: [push, pull_request]
+jobs:
+  formatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v24
+      - name: nix fmt
+        run: nix fmt -- --fail-on-change --no-cache
