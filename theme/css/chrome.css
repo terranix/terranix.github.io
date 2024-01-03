@@ -117,7 +117,8 @@ a > .hljs {
 }
 
 .menu-img {
-    height: calc(0.6 * var(--menu-bar-height)) ;
+    height: calc(0.6 * var(--menu-bar-height));
+    margin-bottom: calc(-0.2 * var(--menu-bar-height));
 }
 
 .js .menu-title {
