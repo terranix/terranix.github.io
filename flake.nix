@@ -32,6 +32,11 @@
               runtimeInputs = mdbookRuntimeInputs;
               text = "mdbook serve";
             };
+            build.program = pkgs.writeShellApplication {
+              name = "build";
+              runtimeInputs = mdbookRuntimeInputs;
+              text = "mdbook build";
+            };
             check.program = pkgs.writeShellApplication {
               name = "check";
               runtimeInputs = treefmtRuntimeInputs ++ mdbookRuntimeInputs;
