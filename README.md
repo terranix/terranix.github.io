@@ -1,6 +1,4 @@
-[terranix.org](https://terranix.org) will soon be hosted by github pages and will be rendered by [mdbook](https://github.com/rust-lang/mdBook).
-
-> This is a work in progress project
+[terranix.org](https://terranix.org) rendered by [mdbook](https://github.com/rust-lang/mdBook).
 
 ## How to run
 
