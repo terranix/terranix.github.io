@@ -2,8 +2,8 @@ terranix is available via the [nix flakes](https://nixos.wiki/wiki/Flakes).
 
 <div class="warning">
 If you don’t know what <a href="https://nixos.org">NixOS</a> or
-<a href="https://terraform.io">Terraform</a> is, have a look at <a
-href="what-is-terranix.html">what terranix is</a>.
+<a href="https://terraform.io">Terraform</a> is, have a look at 
+<a href="what-is-terranix.html">what terranix is</a>.
 </div>
 
 ## Using terranix via flakes
