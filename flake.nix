@@ -36,8 +36,8 @@
               name = "build";
               runtimeInputs = mdbookRuntimeInputs;
               text = ''
-              mdbook build
-              cp -r .well-known book/html/.well-known
+                mdbook build
+                cp -r .well-known book/html/.well-known
               '';
             };
             check.program = pkgs.writeShellApplication {
