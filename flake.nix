@@ -35,7 +35,10 @@
             build.program = pkgs.writeShellApplication {
               name = "build";
               runtimeInputs = mdbookRuntimeInputs;
-              text = "mdbook build";
+              text = ''
+              mdbook build
+              cp -r .well-known book/html/.well-known
+              '';
             };
             check.program = pkgs.writeShellApplication {
               name = "check";
