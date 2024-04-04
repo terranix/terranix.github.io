@@ -14,6 +14,6 @@ files.
 
 ## Community
 
-- Join via matrix at `#terranix:terranix.org`.
+- Join via matrix at [#terranix:nixos.org](https://matrix.to/#/#terranix:nixos.org).
 - Write issues on [github](https://github.com/terranix/terranix/issues)
 - Create pull requests on [github](https://github.com/terranix/terranix/pulls)
