@@ -14,6 +14,7 @@
 
 # News
 
+- [Release 2.8.0 ](news/2024-10-15_release-2.8.0.md)
 - [Release 2.7.0 ](news/2023-09-22_release-2.7.0.md)
 - [Release 2.6.0 ](news/2023-05-24_release-2.6.0.md)
 - [Matrix Server is Online](news/2023-02-08_matrix.md)
