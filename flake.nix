@@ -26,6 +26,9 @@
           ];
         in
         {
+          devShells.default = pkgs.mkShell {
+            buildInputs = mdbookRuntimeInputs ++ treefmtRuntimeInputs;
+          };
           apps = rec {
             default = serve;
             serve.program = pkgs.writeShellApplication {
