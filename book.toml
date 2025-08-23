@@ -9,6 +9,7 @@ title = "terranix"
 [output.html]
 default-theme = "terranix"
 no-section-label = true
+additional-js = ["theme/nix.min.js"]
 git-repository-url = "https://github.com/terranix/terranix"
 git-repository-icon = "fa-github"
 
