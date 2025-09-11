@@ -19,4 +19,4 @@ enable = false
 [output.linkcheck]
 # Should we check links on the internet? Enabling this option adds a
 # non-negligible performance impact
-follow-web-links = true
+follow-web-links = false
