@@ -1,9 +1,12 @@
-**HCL** is the language of terraform.
-It has its flaws, this is why terranix was born.
+# terranix vs. HCL
 
-## declarations
+HCL is the language of Terraform. It has its flaws. That is why terranix was born.
 
-In **HCL** you would do something like this:
+This page explains some general differences between the two.
+
+## Declarations
+
+In HCL you would do something like this:
 
 ```hcl
 resource "aws_instance" "web" {
@@ -27,10 +30,15 @@ resource."aws_instance"."web" = {
 }
 ```
 
-## references
+So while HCL has declarations, Nix only has [attribute sets][attrset].
 
-In **HCL** you can only reference variable outputs.
-But in terranix, because it is nix, you can basically reference everything.
+[attrset]: https://nix.dev/manual/nix/2.18/language/values.html?highlight=attribute+set#attribute-set
+
+## References
+
+In HCL you can only reference variable outputs.
+
+But in terranix, because it is Nix, you can basically reference anything.
 
 For example if you have a resource and you want to reuse its parameters:
 

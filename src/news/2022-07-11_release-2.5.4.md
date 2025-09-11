@@ -1,3 +1,5 @@
+# Release 2.5.4
+
 Version [2.5.4](https://github.com/terranix/terranix/releases/tag/2.5.4)
 is released.
 

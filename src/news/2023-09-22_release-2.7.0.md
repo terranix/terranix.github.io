@@ -1,3 +1,5 @@
+# Release 2.7.0
+
 Version [2.7.0](https://github.com/terranix/terranix/releases/tag/2.7.0)
 is released.
 

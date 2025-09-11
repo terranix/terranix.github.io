@@ -1,3 +1,5 @@
+# Release 2.4.0
+
 Version [2.4.0](https://github.com/terranix/terranix/releases/tag/2.4.0)
 is finally released.
 It took a while but terranix finally
