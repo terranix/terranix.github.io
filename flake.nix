@@ -52,6 +52,14 @@
                 mdbook build
               '';
             };
+            deepcheck.program = pkgs.writeShellApplication {
+              name = "deepcheck";
+              runtimeInputs = treefmtRuntimeInputs ++ mdbookRuntimeInputs;
+              text = ''
+                treefmt --no-cache --fail-on-change
+                MDBOOK_OUTPUT__LINKCHECK__follow_web_links=true mdbook build
+              '';
+            };
           };
           formatter = pkgs.writeShellApplication {
             name = "treefmt";
