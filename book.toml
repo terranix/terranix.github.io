@@ -23,6 +23,7 @@ enable = false
 follow-web-links = false
 
 [output.html.redirect]
+# Redirecting because of brokenness when using subdirectories
 "documentation/flakes.html" = "../flakes.html"
 "documentation/functions.html" = "../functions.html"
 "documentation/getting-started.html" = "../getting-started.html"
@@ -43,3 +44,6 @@ follow-web-links = false
 "news/2023-09-22_release-2.7.0.html" = "../news-2023-09-22_release-2.7.0.html"
 "news/2024-10-15_release-2.8.0.html" = "../news-2024-10-15_release-2.8.0.html"
 "news/2025-11-09_website_renewal.html" = "../news-2025-11-09_website_renewal.html"
+
+# Redirecting because of typos and restructuring
+"getting-startet-with-nix-flakes.html" = "getting-started-with-flakes.html"
