@@ -17,8 +17,9 @@ git-repository-icon = "fa-github"
 enable = false
 
 [output.linkcheck]
-# Should we check links on the internet? Enabling this option adds a
-# non-negligible performance impact
+# Don't follow external links when linkchecking by default.
+# Use `nix run .#deepcheck` to also follow web links.
+# Several HashiCorp resources give 429 Too Many Requests.
 follow-web-links = false
 
 [output.html.redirect]
