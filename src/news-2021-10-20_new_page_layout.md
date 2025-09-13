@@ -1,5 +1,7 @@
 {{#title New Page Layout}}
 
+# New Page Layout
+
 It took me a while to change the layout of terranix,
 but it's here now.
 The layout was heavily inspired by

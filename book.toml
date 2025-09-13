@@ -17,6 +17,29 @@ git-repository-icon = "fa-github"
 enable = false
 
 [output.linkcheck]
-# Should we check links on the internet? Enabling this option adds a
-# non-negligible performance impact
+# Don't follow external links when linkchecking by default.
+# Use `nix run .#deepcheck` to also follow web links.
+# Several HashiCorp resources give 429 Too Many Requests.
 follow-web-links = false
+
+[output.html.redirect]
+"documentation/flakes.html" = "../flakes.html"
+"documentation/functions.html" = "../functions.html"
+"documentation/getting-started.html" = "../getting-started.html"
+"documentation/getting-startet-with-nix-flakes.html" = "../getting-startet-with-nix-flakes.html"
+"documentation/modules.html" = "../modules.html"
+"documentation/terranix-vs-hcl.html" = "../terranix-vs-hcl.html"
+"documentation/what-is-terranix.html" = "../what-is-terranix.html"
+"news/2021-10-02_release-2.4.0.html" = "../news-2021-10-02_release-2.4.0.html"
+"news/2021-10-20_new_page_layout.html" = "../news-2021-10-20_new_page_layout.html"
+"news/2021-11-07_release-2.5.0.html" = "../news-2021-11-07_release-2.5.0.html"
+"news/2021-11-13_release-2.5.1.html" = "../news-2021-11-13_release-2.5.1.html"
+"news/2021-11-17_release-2.5.2.html" = "../news-2021-11-17_release-2.5.2.html"
+"news/2022-01-07_release-2.5.3.html" = "../news-2022-01-07_release-2.5.3.html"
+"news/2022-07-11_release-2.5.4.html" = "../news-2022-07-11_release-2.5.4.html"
+"news/2022-09-06_release-2.5.5.html" = "../news-2022-09-06_release-2.5.5.html"
+"news/2023-02-08_matrix.html" = "../news-2023-02-08_matrix.html"
+"news/2023-05-24_release-2.6.0.html" = "../news-2023-05-24_release-2.6.0.html"
+"news/2023-09-22_release-2.7.0.html" = "../news-2023-09-22_release-2.7.0.html"
+"news/2024-10-15_release-2.8.0.html" = "../news-2024-10-15_release-2.8.0.html"
+"news/2025-11-09_website_renewal.html" = "../news-2025-11-09_website_renewal.html"
