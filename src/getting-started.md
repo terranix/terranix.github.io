@@ -1,4 +1,4 @@
-# Getting Started
+# Getting started
 
 Let's have a quick overview on how you could use terranix.
 

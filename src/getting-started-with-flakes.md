@@ -1,16 +1,22 @@
-[nix flakes](https://nixos.wiki/wiki/Flakes)
+# Getting started with flakes
+
+[Nix flakes](https://nixos.wiki/wiki/Flakes)
 make dependency management of modules and packages much easier.
 
 Deeper look at terranix and nix flakes is done in the
-[flake chapter](flakes.md)
+[flake chapter](flakes.md).
 
-## nix build
+## A minimal flake.nix
 
-Here is a minimal `flake.nix`
+Extending [Getting started](./getting-started.md), this minimal flake your terranix resources are defined in `config.nix`:
 
 ```nix
 {
-  inputs.terranix.url = "github:terranix/terranix";
+  inputs = {
+    terranix.url = "github:terranix/terranix";
+    terranix.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = { terranix, ... }:
     let
       system = "x86_64-linux";
@@ -24,18 +30,34 @@ Here is a minimal `flake.nix`
 }
 ```
 
-You can run `nix build -o config.tf.json`, which should create a `config.tf.json`
-in your current folder.
-Now you are ready to run `terraform`.
+## nix build
+
+Instead of `terranix config.nix > config.tf.json`, you can run `nix build -o config.tf.json`:
+
+```
+nix build -o config.tf.json
+tofu init
+tofu apply
+```
+
+Use terraform or tofu if you installed either of them plainly.
 
 ## nix run
 
-Of course, you can use `apps` to do everything at once.
+You can create Nix flake _apps_ that let you run:
+
+- `nix run`
+- `nix run .#apply`
+- `nix run .#destroy`
 
 ```nix
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs";
-  inputs.terranix.url = "github:terranix/terranix";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs";
+    terranix.url = "github:terranix/terranix";
+    terranix.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = { self, nixpkgs, terranix, ... }:
     let
       system = "x86_64-linux";
@@ -58,6 +80,7 @@ Of course, you can use `apps` to do everything at once.
               && ${terraform}/bin/terraform apply
           '');
         };
+
         # nix run ".#destroy"
         destroy = {
           type = "app";
@@ -69,10 +92,9 @@ Of course, you can use `apps` to do everything at once.
           '');
         };
       };
+
       # nix run
       defaultApp.${system} = self.apps.${system}.apply;
     };
 }
 ```
-
-This provides you with the commands `nix run`, `nix run ".#apply"` and `nix run ".#destroy"`.

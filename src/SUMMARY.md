@@ -3,10 +3,10 @@
 # Documentation
 
 - [Introduction](index.md)
-- [Getting Started](getting-started.md)
+- [Getting started](getting-started.md)
   - [What is Terraform / OpenTofu?](what-is-terranix.md)
-  - [Getting Started with nix flake](getting-startet-with-nix-flakes.md)
-- [Differences between terranix and HCL](terranix-vs-hcl.md)
+  - [Getting started with flakes](getting-started-with-flakes.md)
+  - [Differences between terranix and HCL](terranix-vs-hcl.md)
 - [Functions](functions.md)
 - [Modules](modules.md)
 - [terranix via nix flakes](flakes.md)
