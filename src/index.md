@@ -26,5 +26,5 @@ that can then be applied using the same providers.
 ## Contributors
 
 - terranix was originally created by [@mrVanDalo](http://github.com/mrVanDalo)
-- terranix is actively maintained by [@sshine](http://github.com/sshine) and [@mdarocha](http://github.com/mdarocha)
+- terranix is actively maintained by [@sshine](http://github.com/sshine)
 - terranix was made by [dozens of contributors](https://github.com/terranix/terranix/graphs/contributors)
