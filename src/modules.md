@@ -81,7 +81,8 @@ config = mkAssert (cfg.parameter != "fail") "parameter is set to fail!" {
 };
 ```
 
-## provide terranix modules using nix flakes
+## Provide terranix modules using nix flakes
 
 Have a look at
-[the flake documentation](flakes.md#writing-terranix-modules).
+[Writing terranix modules](getting-started-with-flakes.md#writing-terranix-modules)
+in the flakes documentation.

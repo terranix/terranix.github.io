@@ -47,3 +47,4 @@ follow-web-links = false
 
 # Redirecting because of typos and restructuring
 "getting-startet-with-nix-flakes.html" = "getting-started-with-flakes.html"
+"flakes.html" = "getting-started-with-flakes.html"

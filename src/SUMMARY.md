@@ -12,7 +12,6 @@
 - [Functions](functions.md)
   - [`evalTerranixConfiguration`](eval-terranix-configuration.md)
 - [Modules](modules.md)
-- [terranix via nix flakes](flakes.md)
 
 # News
 
