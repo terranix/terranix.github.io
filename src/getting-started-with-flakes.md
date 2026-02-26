@@ -3,12 +3,19 @@
 [Nix flakes](https://nixos.wiki/wiki/Flakes)
 make dependency management of modules and packages much easier.
 
-Deeper look at terranix and nix flakes is done in the
-[flake chapter](flakes.md).
+## Quick start from template
+
+The fastest way to get started is with the terranix flake template:
+
+```shell
+nix flake init --template github:terranix/terranix-examples
+```
+
+This creates a `flake.nix` and `config.nix` you can build right away.
 
 ## A minimal flake.nix
 
-Extending [Getting started](./getting-started.md), this minimal flake your terranix resources are defined in `config.nix`:
+Extending [Getting started](./getting-started.md), this minimal flake defines your terranix resources in `config.nix`:
 
 ```nix
 {
@@ -98,3 +105,26 @@ You can create Nix flake _apps_ that let you run:
     };
 }
 ```
+
+## Writing terranix modules
+
+You can scaffold a new terranix module with:
+
+```shell
+nix flake init --template "github:terranix/terranix-examples#module"
+```
+
+A terranix module flake should provide the following outputs:
+
+- `terranixModules.<name>` — individual modules
+- `terranixModule` — all `terranixModules` combined
+
+The function `lib.terranixOptions` can render an `options.json` for your module,
+which is useful for generating documentation. See the
+[terranix-module-github](https://github.com/terranix/terranix-module-github)
+repository for an example.
+
+For more on the module system itself, see the [Modules](modules.md) page.
+
+As a next step, read [terranix and flake modules](./terranix-and-flake-modules.md)
+to use flake-parts to manage terranix configurations declaratively

@@ -13,5 +13,5 @@ for your input on this release.
 - add terranixOptionAst
 
 Have a look at
-[the flakes documentation](flakes.md#using-terranixconfigurationast-or-terranixconfigurationast)
+[Evaluating terranix configurations](eval-terranix-configuration.md)
 if you want to know how to use these functions.
