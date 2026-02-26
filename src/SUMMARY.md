@@ -7,6 +7,7 @@
   - [What is Terraform / OpenTofu?](what-is-terranix.md)
   - [Getting started with flakes](getting-started-with-flakes.md)
   - [Customizing the Terraform binary](terraform-wrapper.md)
+  - [terranix and flake modules](terranix-and-flake-modules.md)
   - [Differences between terranix and HCL](terranix-vs-hcl.md)
 - [Functions](functions.md)
 - [Modules](modules.md)
