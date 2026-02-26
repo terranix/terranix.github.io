@@ -75,7 +75,7 @@ resource "hcloud_server" "myserver" {
   image       = "debian-13"
   name        = "myserver.example.org"
   server_type = "cx23"
-  datacenter  = "nbg1-dc3"
+  location    = "nbg1"
   ssh_keys    = [ hcloud_ssh_key.my_key.id ]
   public_net {
     ipv4_enabled = true
@@ -109,7 +109,7 @@ One could store this to `myserver.tf.json`:
         "image": "debian-12",
         "name": "myserver.example.org",
         "server_type": "cx22",
-        "datacenter": "nbg1-dc3",
+        "location": "nbg1",
         "ssh_keys": ["${hcloud_ssh_key.my_key.id}"],
         "public_net": {
           "ipv4_enabled": true,
