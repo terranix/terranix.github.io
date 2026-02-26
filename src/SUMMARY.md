@@ -10,6 +10,7 @@
   - [terranix and flake modules](terranix-and-flake-modules.md)
   - [Differences between terranix and HCL](terranix-vs-hcl.md)
 - [Functions](functions.md)
+  - [`evalTerranixConfiguration`](eval-terranix-configuration.md)
 - [Modules](modules.md)
 - [terranix via nix flakes](flakes.md)
 
