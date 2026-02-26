@@ -22,3 +22,9 @@ that can then be applied using the same providers.
 
 - Write issues on [GitHub](https://github.com/terranix/terranix/issues)
 - Create pull requests on [GitHub](https://github.com/terranix/terranix/pulls)
+
+## Contributors
+
+- terranix was originally created by [@mrVanDalo](http://github.com/mrVanDalo)
+- terranix is actively maintained by [@sshine](http://github.com/sshine) and [@mdarocha](http://github.com/mdarocha)
+- terranix was made by [dozens of contributors](https://github.com/terranix/terranix/graphs/contributors)
