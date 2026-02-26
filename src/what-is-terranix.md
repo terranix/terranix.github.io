@@ -72,9 +72,9 @@ provider "hcloud" {
 }
 
 resource "hcloud_server" "myserver" {
-  image       = "debian-12"
+  image       = "debian-13"
   name        = "myserver.example.org"
-  server_type = "cx22"
+  server_type = "cx23"
   datacenter  = "nbg1-dc3"
   ssh_keys    = [ hcloud_ssh_key.my_key.id ]
   public_net {
