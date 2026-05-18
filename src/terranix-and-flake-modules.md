@@ -35,7 +35,7 @@ is generated for you:
 
   outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ inputs.terranix.flakeModules.default ];
+      imports = [ inputs.terranix.flakeModule ];
       systems = [ "x86_64-linux" ];
 
       perSystem = { pkgs, ... }: {
