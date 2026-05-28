@@ -15,6 +15,7 @@
 
 # News
 
+- [2026-05-28: Release 2.9.0](news-2026-05-28_release-2.9.0.md)
 - [2025-09-11: Website Renewal](news-2025-11-09_website_renewal.md)
 - [2024-10-15: Release 2.8.0](news-2024-10-15_release-2.8.0.md)
 - [2023-09-22: Release 2.7.0](news-2023-09-22_release-2.7.0.md)
