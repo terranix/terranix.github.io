@@ -1,0 +1,7 @@
+name = "terratheme"
+license = "MIT"
+description = "Hugo theme for terranix.org — Solarized palette, docs + news layouts, light/dark toggle."
+homepage = "https://terranix.org/"
+tags = ["docs", "blog", "solarized", "responsive"]
+features = ["docs", "blog", "dark-mode", "responsive"]
+min_version = "0.110.0"

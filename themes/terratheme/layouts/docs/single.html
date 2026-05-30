@@ -1,0 +1,67 @@
+{{ define "main" }}
+{{- $showRightToc := true -}}
+{{- if and (isset .Params "showrighttoc") (not .Params.showRightToc) -}}
+  {{- $showRightToc = false -}}
+{{- end -}}
+<div class="tx-layout-docs{{ if not $showRightToc }} tx-layout-docs--no-toc{{ end }}">
+  {{ partial "sidebar-left.html" . }}
+
+  <main class="tx-main">
+    <nav class="tx-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ (.Site.GetPage "/docs").RelPermalink }}">Documentation</a>
+      {{ with .Parent }}
+        {{ if ne .RelPermalink (($.Site.GetPage "/docs").RelPermalink) }}
+          <span>/</span>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+      {{ end }}
+      <span>/</span>
+      <span class="tx-breadcrumb-current">{{ .LinkTitle }}</span>
+    </nav>
+
+    <article class="tx-content">
+      <h1>{{ .Title }}</h1>
+      {{ if not .Params.hideMeta }}
+        <p class="tx-doc-meta">
+          {{ with .Lastmod }}Last updated {{ .Format "2006-01-02" }}{{ end }}
+          {{ if .ReadingTime }} · {{ .ReadingTime }} min read{{ end }}
+        </p>
+      {{ end }}
+
+      {{ .Content }}
+
+      {{ with .Site.Params.editBaseURL }}
+        {{- $path := $.File.Path -}}
+        <div class="tx-edit-link">
+          <a href="{{ . }}/{{ $path }}" rel="noopener">Edit this page on GitHub →</a>
+        </div>
+      {{ end }}
+
+      {{ if or .PrevInSection .NextInSection }}
+        <nav class="tx-pager" aria-label="Page navigation">
+          {{ with .PrevInSection }}
+            <a class="tx-pager-link" href="{{ .RelPermalink }}">
+              <div class="tx-pager-link-label">← Previous</div>
+              <div class="tx-pager-link-title">{{ .LinkTitle }}</div>
+            </a>
+          {{ else }}
+            <span class="tx-pager-spacer"></span>
+          {{ end }}
+          {{ with .NextInSection }}
+            <a class="tx-pager-link tx-pager-link--next" href="{{ .RelPermalink }}">
+              <div class="tx-pager-link-label">Next →</div>
+              <div class="tx-pager-link-title">{{ .LinkTitle }}</div>
+            </a>
+          {{ else }}
+            <span class="tx-pager-spacer"></span>
+          {{ end }}
+        </nav>
+      {{ end }}
+    </article>
+  </main>
+
+  {{ if $showRightToc }}
+    {{ partial "toc-right.html" . }}
+  {{ end }}
+</div>
+{{ end }}

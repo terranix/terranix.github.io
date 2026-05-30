@@ -1,0 +1,11 @@
+{{- /*
+  Callout box.
+  Usage: {{< callout type="note" >}}Body markdown.{{< /callout >}}
+  Types: note (default), warning, tip
+*/ -}}
+{{- $type := .Get "type" | default "note" -}}
+{{- $label := .Get "label" | default (upper $type) -}}
+<div class="tx-callout tx-callout--{{ $type }}">
+  <span class="tx-callout-label">{{ $label }}</span>
+  <div class="tx-callout-body">{{ .Page.RenderString .Inner }}</div>
+</div>

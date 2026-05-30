@@ -1,0 +1,76 @@
+{{ define "main" }}
+<div class="tx-layout-docs tx-layout-docs--no-toc">
+  {{ partial "sidebar-left.html" . }}
+
+  <main class="tx-main">
+    <nav class="tx-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ (.Site.GetPage "/news").RelPermalink }}">News</a>
+      <span>/</span>
+      <span class="tx-breadcrumb-current">{{ .LinkTitle }}</span>
+    </nav>
+
+    {{- $tag := "" -}}
+    {{- with .Params.tags -}}{{- $tag = index . 0 -}}{{- end -}}
+    {{- $tagClass := "tx-tag-pill--default" -}}
+    {{- $tagLower := lower $tag -}}
+    {{- if eq $tagLower "release" -}}{{- $tagClass = "tx-tag-pill--release" -}}
+    {{- else if eq $tagLower "project" -}}{{- $tagClass = "tx-tag-pill--project" -}}
+    {{- end -}}
+
+    <article class="tx-content">
+      <div class="tx-post-meta">
+        {{ with .Date }}<span class="tx-post-meta-date">{{ .Format "2006-01-02" }}</span>{{ end }}
+        {{ with $tag }}<span class="tx-tag-pill {{ $tagClass }}">{{ lower . }}</span>{{ end }}
+        {{ if .ReadingTime }}<span>· {{ .ReadingTime }} min read</span>{{ end }}
+      </div>
+
+      <h1 class="tx-post-title">{{ .Title }}</h1>
+
+      {{ with .Description | default .Summary }}
+        <p class="tx-post-summary">{{ . | safeHTML }}</p>
+      {{ end }}
+
+      {{ with .Params.author }}
+        <div class="tx-author">
+          <div class="tx-author-avatar">{{ . | substr 0 2 | lower }}</div>
+          <div>
+            <div class="tx-author-name">@{{ . }}</div>
+            {{ with $.Params.authorRole }}<div class="tx-author-role">{{ . }}</div>{{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      {{ .Content }}
+
+      {{ with .Site.Params.editBaseURL }}
+        {{- $path := $.File.Path -}}
+        <div class="tx-edit-link">
+          <a href="{{ . }}/{{ $path }}" rel="noopener">Edit this page on GitHub →</a>
+        </div>
+      {{ end }}
+
+      {{- /* News pager: NewerInSection = next/newer post, OlderInSection conceptually = prev */ -}}
+      {{ if or .PrevInSection .NextInSection }}
+        <nav class="tx-pager" aria-label="Post navigation">
+          {{ with .NextInSection }}
+            <a class="tx-pager-link" href="{{ .RelPermalink }}">
+              <div class="tx-pager-link-label">← Newer post</div>
+              <div class="tx-pager-link-title">{{ .LinkTitle }}</div>
+            </a>
+          {{ else }}
+            <span class="tx-pager-spacer"></span>
+          {{ end }}
+          {{ with .PrevInSection }}
+            <a class="tx-pager-link tx-pager-link--next" href="{{ .RelPermalink }}">
+              <div class="tx-pager-link-label">Older post →</div>
+              <div class="tx-pager-link-title">{{ .LinkTitle }}</div>
+            </a>
+          {{ else }}
+            <span class="tx-pager-spacer"></span>
+          {{ end }}
+        </nav>
+      {{ end }}
+    </article>
+  </main>
+</div>
+{{ end }}

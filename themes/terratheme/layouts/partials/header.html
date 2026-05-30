@@ -1,0 +1,55 @@
+{{- $active := "" -}}
+{{- if .IsHome -}}{{- $active = "home" -}}
+{{- else if eq .Section "docs" -}}{{- $active = "docs" -}}
+{{- else if eq .Section "news" -}}{{- $active = "news" -}}
+{{- end -}}
+<header class="tx-header" role="banner">
+  <div class="tx-header-left">
+    <a href="{{ "/" | relURL }}" class="tx-logo" aria-label="{{ .Site.Title }}">
+      <img src="{{ "img/terranix.svg" | relURL }}" alt="">
+      <span class="tx-logo-word">{{ .Site.Title | default "terranix" }}</span>
+    </a>
+    {{ with .Site.Params.version }}
+      <a href="{{ $.Site.Params.versionURL | default "/news/" | relURL }}" class="tx-version-pill">v{{ . }}</a>
+    {{ end }}
+  </div>
+
+  <nav class="tx-nav" role="navigation" aria-label="Primary">
+    {{ range .Site.Menus.main }}
+      {{- $isActive := false -}}
+      {{- if and (eq $active "docs") (or (eq .Identifier "docs") (eq (lower .Name) "documentation") (eq (lower .Name) "docs")) -}}{{ $isActive = true }}{{- end -}}
+      {{- if and (eq $active "news") (or (eq .Identifier "news") (eq (lower .Name) "news")) -}}{{ $isActive = true }}{{- end -}}
+      <a href="{{ .URL | relURL }}" class="tx-nav-cta{{ if $isActive }} tx-nav-cta--active{{ end }}"
+         {{ if hasPrefix .URL "http" }}rel="noopener"{{ end }}>{{ .Name }}</a>
+    {{ end }}
+    <span class="tx-nav-divider" aria-hidden="true"></span>
+    {{ range .Site.Params.community }}
+      {{ if eq .icon "github" }}
+        <a href="{{ .url }}" class="tx-icon-btn" aria-label="GitHub" rel="noopener">
+          {{ partial "icons/github.html" $ }}
+        </a>
+      {{ end }}
+    {{ end }}
+    {{ partial "theme-toggle.html" . }}
+  </nav>
+
+  <div class="tx-nav-right tx-header-hamburger">
+    {{ partial "theme-toggle.html" . }}
+    <button type="button" class="tx-hamburger" data-tx-mobile-nav-toggle
+            aria-label="Open navigation menu">
+      {{ partial "icons/hamburger.html" . }}
+    </button>
+  </div>
+</header>
+
+<div class="tx-mobile-nav" data-tx-mobile-nav aria-hidden="true">
+  <div class="tx-mobile-nav-panel" role="dialog" aria-label="Navigation">
+    <button type="button" class="tx-mobile-nav-close" data-tx-mobile-nav-close aria-label="Close menu">×</button>
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+    {{ end }}
+    {{ range .Site.Params.community }}
+      <a href="{{ .url }}" rel="noopener">{{ .name | default .icon }}</a>
+    {{ end }}
+  </div>
+</div>

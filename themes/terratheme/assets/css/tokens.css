@@ -1,0 +1,305 @@
+/* terranix — design tokens */
+
+:root {
+  /* Solarized-light palette */
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0: #839496;
+  --base1: #93a1a1;
+  --base2: #eee8d5; /* darker beige */
+  --base3: #fdf6e3; /* light beige */
+
+  --yellow: #b58900;
+  --orange: #cb4b16;
+  --red: #dc322f;
+  --magenta: #d33682;
+  --violet: #6c71c4;
+  --blue: #268bd2;
+  --cyan: #2aa198;
+  --green: #859900;
+
+  /* Logo */
+  --teal: #458588;
+  --teal-2: #3a7174;
+  --teal-tint: #ecf3f3;
+
+  /* Foreground / background */
+  --bg: #ffffff;
+  --bg-soft: #fdf6e3; /* solarized base3 */
+  --bg-tint: #faf3df; /* between white and base3 */
+  --bg-strong: #eee8d5; /* solarized base2 */
+
+  --fg: #073642; /* base02 */
+  --fg-body: #495b62;
+  --fg-muted: #7c8a8e;
+  --fg-faint: #a5afb0;
+
+  --border: rgba(7, 54, 66, 0.1);
+  --border-strong: rgba(7, 54, 66, 0.18);
+  --border-beige: #e5dfca;
+
+  --accent: var(--teal);
+  --accent-2: var(--orange);
+  --link: var(--teal);
+  --link-hover: var(--teal-2);
+
+  /* Fonts — Terraform-style classical system stack */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+
+  /* Shadows */
+  --shadow-soft:
+    0 1px 2px rgba(7, 54, 66, 0.04), 0 1px 1px rgba(7, 54, 66, 0.03);
+  --shadow-card:
+    0 1px 2px rgba(7, 54, 66, 0.05), 0 4px 14px rgba(7, 54, 66, 0.04);
+
+  /* Code panel chrome (tab bar / copy button) */
+  --code-chrome-bg: rgba(255, 255, 255, 0.5);
+  --code-btn-bg: rgba(255, 255, 255, 0.6);
+}
+
+/* ----------------------------- Dark theme ------------------------------ */
+/* Solarized-dark: base03 is the primary surface; base02 fills the
+   "beige band" role that base3 plays in light mode.                      */
+:root[data-theme="dark"] {
+  --bg: #002b36; /* base03 */
+  --bg-soft: #073642; /* base02 — banded sections / code surfaces */
+  --bg-tint: #063541;
+  --bg-strong: #0a4150; /* slightly lifted base02 */
+
+  --fg: #eee8d5; /* base2  — headings */
+  --fg-body: #93a1a1; /* base1  — body copy */
+  --fg-muted: #839496; /* base0 */
+  --fg-faint: #586e75; /* base01 — comments */
+
+  --border: rgba(238, 232, 213, 0.1);
+  --border-strong: rgba(238, 232, 213, 0.22);
+  --border-beige: rgba(238, 232, 213, 0.13);
+
+  /* Accents kept on-brand; links lifted for legibility on dark */
+  --teal: #57a8a4;
+  --teal-2: #7cc6c1;
+  --teal-tint: #0c3b40;
+  --orange: #d4582a;
+
+  --accent: var(--teal);
+  --accent-2: var(--orange);
+  --link: var(--teal);
+  --link-hover: var(--teal-2);
+
+  --code-chrome-bg: rgba(0, 0, 0, 0.22);
+  --code-btn-bg: rgba(0, 0, 0, 0.28);
+}
+
+/* Base resets for inside-artboard rendering */
+.terranix-site,
+.terranix-site * {
+  box-sizing: border-box;
+}
+
+.terranix-site {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--bg);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+
+/* Smooth the light/dark swap */
+html,
+body {
+  background: var(--bg);
+}
+.terranix-site,
+.terranix-site header,
+.terranix-site footer,
+.terranix-site aside,
+.terranix-site pre,
+.terranix-site code,
+.terranix-site .tx-logo-word {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.terranix-site a {
+  color: var(--link);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+.terranix-site a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.terranix-site p {
+  margin: 0 0 1em;
+  color: var(--fg-body);
+}
+
+.terranix-site h1,
+.terranix-site h2,
+.terranix-site h3,
+.terranix-site h4 {
+  color: var(--fg);
+  margin: 0 0 0.5em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.terranix-site code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-beige);
+  border-radius: var(--r-sm);
+  padding: 1px 5px;
+  color: var(--fg);
+}
+
+/* Block code inside <pre> opts out of the inline-code styling — otherwise the
+   border draws on every wrapped visual line. */
+.terranix-site pre code {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.terranix-site pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.terranix-site ul {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+.terranix-site li {
+  margin: 0.25em 0;
+  color: var(--fg-body);
+}
+
+.terranix-site hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+/* Generic surface helpers */
+.tx-beige {
+  background: var(--bg-soft);
+}
+.tx-beige-strong {
+  background: var(--bg-strong);
+}
+.tx-divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* Logo helper */
+.tx-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.tx-logo img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+.tx-logo .tx-logo-word {
+  font-size: 17px;
+  color: var(--fg);
+}
+
+/* Header link styling */
+.tx-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.tx-nav a {
+  color: var(--fg-body);
+  font-size: 14px;
+  font-weight: 500;
+}
+.tx-nav a:hover {
+  color: var(--fg);
+  text-decoration: none;
+}
+.tx-nav .tx-nav-cta {
+  color: var(--fg);
+}
+
+/* Buttons */
+.tx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  color: var(--fg);
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+.tx-btn-primary {
+  background: var(--teal);
+  color: #fff;
+}
+.tx-btn-primary:hover {
+  background: var(--teal-2);
+}
+.tx-btn-ghost {
+  border-color: var(--border-strong);
+  color: var(--fg);
+}
+.tx-btn-ghost:hover {
+  background: var(--bg-soft);
+}
+
+/* GitHub icon button */
+.tx-icon-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  border-radius: var(--r-sm);
+}
+.tx-icon-btn:hover {
+  color: var(--fg);
+  background: var(--bg-soft);
+}

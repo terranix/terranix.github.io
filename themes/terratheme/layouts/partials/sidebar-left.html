@@ -1,0 +1,87 @@
+{{- /*
+  Left sidebar: Documentation tree + recent News list.
+  Determines "active" state by comparing each link's .Page with the current
+  rendering context (passed as .) — using .RelPermalink for stable comparison.
+*/ -}}
+{{- $current := . -}}
+{{- $currentURL := .RelPermalink -}}
+{{- $docs := .Site.GetPage "/docs" -}}
+{{- $news := .Site.GetPage "/news" -}}
+
+<button type="button" class="tx-sidebar-toggle" data-tx-sidebar-toggle aria-label="Open documentation menu">
+  {{ partial "icons/hamburger.html" . }} Menu
+</button>
+<div class="tx-sidebar-backdrop" data-tx-sidebar-backdrop aria-hidden="true"></div>
+
+<aside class="tx-sidebar" data-tx-sidebar aria-label="Sidebar">
+  <button type="button" class="tx-sidebar-close" data-tx-sidebar-close aria-label="Close menu">× Close</button>
+
+  {{ if $docs }}
+  <div class="tx-sidebar-section">
+    <div class="tx-sidebar-heading">
+      <img src="{{ "img/terranix.svg" | relURL }}" alt="">
+      Documentation
+    </div>
+    <ul>
+      <li>
+        <a href="{{ $docs.RelPermalink }}"
+           class="tx-sidebar-link{{ if eq $currentURL $docs.RelPermalink }} tx-sidebar-link--active tx-sidebar-link--top{{ end }}">
+          {{ $docs.Params.shortTitle | default "Overview" }}
+        </a>
+      </li>
+      {{ range $docs.Pages.ByWeight }}
+        {{- $isActive := eq $currentURL .RelPermalink -}}
+        {{- $hasActiveChild := false -}}
+        {{- range .Pages -}}
+          {{- if eq $currentURL .RelPermalink -}}{{- $hasActiveChild = true -}}{{- end -}}
+        {{- end -}}
+        <li>
+          <a href="{{ .RelPermalink }}"
+             class="tx-sidebar-link{{ if and $isActive (not .Pages) }} tx-sidebar-link--active tx-sidebar-link--top{{ end }}{{ if or $isActive $hasActiveChild }} tx-sidebar-link--expanded{{ end }}">
+            {{ .Params.shortTitle | default .LinkTitle }}
+          </a>
+          {{ with .Pages.ByWeight }}
+            <ul class="tx-sidebar-children">
+              {{ range . }}
+                {{- $childActive := eq $currentURL .RelPermalink -}}
+                <li>
+                  <a href="{{ .RelPermalink }}"
+                     class="tx-sidebar-link{{ if $childActive }} tx-sidebar-link--active-child{{ end }}">
+                    {{ .Params.shortTitle | default .LinkTitle }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  {{ if $news }}
+  <div class="tx-sidebar-section">
+    <div class="tx-sidebar-heading">
+      <img src="{{ "img/terranix.svg" | relURL }}" alt="">
+      News
+    </div>
+    <ul>
+      <li>
+        <a href="{{ $news.RelPermalink }}"
+           class="tx-sidebar-link{{ if eq $currentURL $news.RelPermalink }} tx-sidebar-link--news-active tx-sidebar-link--top{{ end }}">
+          All releases
+        </a>
+      </li>
+      {{ range first 10 $news.Pages.ByDate.Reverse }}
+        {{- $active := eq $currentURL .RelPermalink -}}
+        <li>
+          <a href="{{ .RelPermalink }}"
+             class="tx-sidebar-link{{ if $active }} tx-sidebar-link--news-active{{ end }}">
+            {{ with .Date }}<span class="tx-sidebar-date">{{ .Format "06-01-02" }}</span>{{ end }}{{ .LinkTitle }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</aside>

@@ -1,0 +1,42 @@
+{{- /*
+  Hero — landing page top section.
+  Params:
+    title         — h1 text; the word in [brackets] is wrapped in --teal accent color
+    lead          — supporting paragraph (raw HTML allowed)
+    ctaPrimary    — "Label|URL"
+    ctaSecondary  — "Label|URL"
+*/ -}}
+{{- $title := .Get "title" -}}
+{{- $lead := .Get "lead" -}}
+{{- $primary := .Get "ctaPrimary" -}}
+{{- $secondary := .Get "ctaSecondary" -}}
+
+{{- /* Replace [accent text] with the styled span */ -}}
+{{- $titleHtml := $title -}}
+{{- if and $titleHtml (in $titleHtml "[") -}}
+  {{- $parts := split $titleHtml "[" -}}
+  {{- $rest := index $parts 1 -}}
+  {{- $accentParts := split $rest "]" -}}
+  {{- $accent := index $accentParts 0 -}}
+  {{- $tail := index $accentParts 1 -}}
+  {{- $titleHtml = printf "%s<span class=\"tx-hero-accent\">%s</span>%s" (index $parts 0) $accent $tail -}}
+{{- end -}}
+
+<section class="tx-hero">
+  <div class="tx-container">
+    <h1>{{ $titleHtml | safeHTML }}</h1>
+    {{ with $lead }}<p class="tx-hero-lead">{{ . | safeHTML }}</p>{{ end }}
+    {{ if or $primary $secondary }}
+      <div class="tx-hero-ctas">
+        {{ with $primary }}
+          {{- $p := split . "|" -}}
+          <a class="tx-btn tx-btn-ghost" href="{{ index $p 1 }}">{{ index $p 0 }}</a>
+        {{ end }}
+        {{ with $secondary }}
+          {{- $p := split . "|" -}}
+          <a class="tx-btn tx-btn-ghost" href="{{ index $p 1 }}">{{ index $p 0 }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>

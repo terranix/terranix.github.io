@@ -1,0 +1,12 @@
+{{- /*
+  A single feature row inside {{< features >}}.
+  Param "title" is required; body is the description (markdown allowed).
+*/ -}}
+{{- $title := .Get "title" -}}
+<li class="tx-feature">
+  <img src="{{ "img/terranix.svg" | relURL }}" alt="">
+  <div>
+    <div class="tx-feature-title">{{ $title }}</div>
+    <div class="tx-feature-body">{{ .Page.RenderString .Inner }}</div>
+  </div>
+</li>

@@ -1,0 +1,6 @@
+/public/
+/result
+/result-*
+/public-result
+.hugo_build.lock
+.direnv/

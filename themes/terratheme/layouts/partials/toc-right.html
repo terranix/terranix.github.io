@@ -1,0 +1,25 @@
+{{- /*
+  Right-side table-of-contents column.
+  Skipped when .Params.showRightToc is explicitly false (default = true).
+*/ -}}
+{{- $show := true -}}
+{{- if and (isset .Params "showrighttoc") (not .Params.showRightToc) -}}
+  {{- $show = false -}}
+{{- end -}}
+
+{{ if $show }}
+<aside class="tx-toc" aria-label="Table of contents">
+  <div class="tx-toc-heading">On this page</div>
+  {{ .TableOfContents }}
+
+  <div class="tx-toc-footer">
+    {{ with .Site.Params.editBaseURL }}
+      {{- $path := $.File.Path -}}
+      <a href="{{ . }}/{{ $path }}" rel="noopener">Edit this page on GitHub →</a>
+    {{ end }}
+    {{ with .Site.Params.issueBaseURL }}
+      <a href="{{ . }}" rel="noopener">Report an issue →</a>
+    {{ end }}
+  </div>
+</aside>
+{{ end }}

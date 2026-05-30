@@ -1,0 +1,30 @@
+{{- /*
+  Features grid wrapper.
+  Usage:
+    {{< features title="Features" >}}
+      {{< feature title="..." >}}body{{< /feature >}}
+      ...
+    {{< /features >}}
+*/ -}}
+{{- $title := .Get "title" | default "Features" -}}
+{{- $variant := .Get "variant" | default "beige" -}}
+
+{{ if eq $variant "beige" }}
+<section class="tx-section tx-section--beige">
+  <div class="tx-container">
+    <h2>{{ $title }}</h2>
+    <ul class="tx-feature-grid">
+      {{ .Inner }}
+    </ul>
+  </div>
+</section>
+{{ else }}
+<section class="tx-section">
+  <div class="tx-container">
+    <h2>{{ $title }}</h2>
+    <ul class="tx-feature-grid">
+      {{ .Inner }}
+    </ul>
+  </div>
+</section>
+{{ end }}

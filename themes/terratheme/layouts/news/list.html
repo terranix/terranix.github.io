@@ -1,0 +1,56 @@
+{{ define "main" }}
+<div class="tx-layout-docs tx-layout-docs--no-toc">
+  {{ partial "sidebar-left.html" . }}
+
+  <main class="tx-main">
+    <nav class="tx-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ .RelPermalink }}">News</a>
+      <span>/</span>
+      <span class="tx-breadcrumb-current">All releases</span>
+    </nav>
+
+    <article class="tx-content">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description | default .Site.Params.newsTagline }}
+        <p style="color:var(--fg-muted); font-size:15px; margin:0 0 36px;">{{ . | safeHTML }}</p>
+      {{ end }}
+
+      {{ .Content }}
+
+      {{- $posts := .Pages.ByDate.Reverse -}}
+      {{- $grouped := $posts.GroupByDate "2006" -}}
+      {{ range $grouped }}
+        <section>
+          <div class="tx-news-year">
+            <h2>{{ .Key }}</h2>
+            <span class="tx-news-year-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span>
+          </div>
+          <ul class="tx-news-list">
+            {{ range .Pages }}
+              {{- $tag := "" -}}
+              {{- with .Params.tags -}}{{- $tag = index . 0 -}}{{- end -}}
+              {{- $tagClass := "tx-tag-pill--default" -}}
+              {{- $tagLower := lower $tag -}}
+              {{- if eq $tagLower "release" -}}{{- $tagClass = "tx-tag-pill--release" -}}
+              {{- else if eq $tagLower "project" -}}{{- $tagClass = "tx-tag-pill--project" -}}
+              {{- end -}}
+              <li class="tx-news-item">
+                <a href="{{ .RelPermalink }}">
+                  <div class="tx-news-item-meta">
+                    <span class="tx-news-item-date">{{ .Date.Format "2006-01-02" }}</span>
+                    {{ with $tag }}<span class="tx-tag-pill {{ $tagClass }}">{{ lower . }}</span>{{ end }}
+                    {{ if .ReadingTime }}<span>· {{ .ReadingTime }} min read</span>{{ end }}
+                  </div>
+                  <div class="tx-news-item-title">{{ .Title }}</div>
+                  <p class="tx-news-item-summary">{{ .Description | default .Summary | safeHTML }}</p>
+                  <span class="tx-news-item-readmore">Read post →</span>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
+    </article>
+  </main>
+</div>
+{{ end }}

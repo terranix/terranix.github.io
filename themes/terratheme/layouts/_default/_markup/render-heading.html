@@ -1,0 +1,4 @@
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">
+  {{ .Text | safeHTML }}
+  <a class="tx-heading-anchor" href="#{{ .Anchor | safeURL }}" aria-label="Permalink to this heading">#</a>
+</h{{ .Level }}>

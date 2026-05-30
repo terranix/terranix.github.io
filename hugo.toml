@@ -1,0 +1,56 @@
+baseURL = 'https://terranix.org/'
+title = 'terranix'
+theme = 'terratheme'
+defaultContentLanguage = 'en'
+
+[languages.en]
+locale = 'en-us'
+weight = 1
+
+[taxonomies]
+tag = 'tags'
+
+[markup]
+[markup.goldmark.renderer]
+unsafe = true
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 4
+[markup.highlight]
+noClasses = false
+
+[[menu.main]]
+name = 'Documentation'
+url = '/docs/'
+weight = 10
+
+[[menu.main]]
+name = 'News'
+url = '/news/'
+weight = 20
+
+[[menu.main]]
+name = 'Community'
+url = 'https://github.com/terranix/terranix/issues'
+weight = 30
+
+[params]
+tagline = 'infrastructure as nix code'
+description = 'Terranix lets you write Terraform configuration in the Nix language.'
+version = '2.9.0'
+versionURL = '/news/2024-10-15-release-2.8.0/'
+logo = '/img/terranix.svg'
+accent = '#458588'
+defaultTheme = 'auto'
+editBaseURL = 'https://github.com/terranix/terranix.github.io/edit/main/content'
+showRightToc = true
+
+[[params.community]]
+name = 'GitHub'
+url = 'https://github.com/terranix/terranix'
+icon = 'github'
+
+[[params.community]]
+name = 'Issues'
+url = 'https://github.com/terranix/terranix/issues'
+icon = 'issues'

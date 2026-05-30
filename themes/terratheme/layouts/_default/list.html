@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="tx-layout-docs tx-layout-docs--no-toc">
+  {{ partial "sidebar-left.html" . }}
+
+  <main class="tx-main">
+    <article class="tx-content">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+
+      {{ with .Pages.ByWeight }}
+        <ul>
+          {{ range . }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+              {{ with .Description }} — {{ . }}{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </article>
+  </main>
+</div>
+{{ end }}

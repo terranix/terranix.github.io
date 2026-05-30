@@ -1,0 +1,60 @@
+{{- $title := .Title -}}
+{{- if .IsHome -}}
+  {{- $title = .Site.Title -}}
+{{- else -}}
+  {{- $title = printf "%s — %s" .Title .Site.Title -}}
+{{- end -}}
+{{- $description := .Description -}}
+{{- if not $description -}}{{- $description = .Site.Params.description -}}{{- end -}}
+{{- $defaultTheme := .Site.Params.defaultTheme | default "auto" -}}
+{{- $accent := .Site.Params.accent -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+{{ with $description }}<meta name="description" content="{{ . }}">{{ end }}
+<link rel="icon" sizes="any" href="{{ "favicon.ico" | relURL }}">
+<link rel="icon" type="image/svg+xml" href="{{ "img/terranix.svg" | relURL }}">
+
+{{/* Pre-paint theme application — must run synchronously in <head> */}}
+<script>
+(function () {
+  try {
+    var stored = localStorage.getItem('terranix-theme');
+    var theme = stored || {{ $defaultTheme | jsonify }};
+    if (theme === 'auto') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch (e) {}
+})();
+</script>
+
+{{/* CSS pipeline: tokens + site -> concat -> minify -> fingerprint */}}
+{{ $tokens := resources.Get "css/tokens.css" }}
+{{ $site   := resources.Get "css/site.css" }}
+{{ $css := slice $tokens $site | resources.Concat "css/bundle.css" }}
+{{ if hugo.IsProduction }}
+  {{ $css = $css | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ else }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ end }}
+
+{{/* Accent override — maps params.accent onto --teal */}}
+{{ with $accent }}
+<style>
+:root { --teal: {{ . | safeCSS }}; --accent: {{ . | safeCSS }}; --link: {{ . | safeCSS }}; }
+</style>
+{{ end }}
+
+{{/* JS pipeline */}}
+{{ $themeJs := resources.Get "js/theme-toggle.js" }}
+{{ $sidebarJs := resources.Get "js/sidebar.js" }}
+{{ $tabsJs := resources.Get "js/code-tabs.js" }}
+{{ $js := slice $themeJs $sidebarJs $tabsJs | resources.Concat "js/bundle.js" }}
+{{ if hugo.IsProduction }}
+  {{ $js = $js | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ else }}
+  <script defer src="{{ $js.RelPermalink }}"></script>
+{{ end }}

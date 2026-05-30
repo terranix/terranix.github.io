@@ -1,0 +1,67 @@
+{{- /*
+  Side-by-side code comparison — terranix (Nix) vs HCL.
+  Renders two panels: stacked on mobile, side-by-side at ≥720px.
+*/ -}}
+{{- $terranixSample := `let
+  mkSite = { name, region }: {
+    resource.digitalocean_droplet.${name} = {
+      inherit name region;
+      image = "ubuntu-22-04-x64";
+      size  = "s-1vcpu-1gb";
+    };
+    resource.digitalocean_record.${name} = {
+      domain = "example.com";
+      type   = "A";
+      inherit name;
+      value  = "\${digitalocean_droplet.${name}.ipv4_address}";
+    };
+  };
+in {
+  imports = [
+    (mkSite { name = "web-1"; region = "fra1"; })
+    (mkSite { name = "web-2"; region = "nyc1"; })
+    (mkSite { name = "web-3"; region = "sgp1"; })
+  ];
+}` -}}
+{{- $hclSample := `locals {
+  sites = {
+    web-1 = "fra1"
+    web-2 = "nyc1"
+    web-3 = "sgp1"
+  }
+}
+
+resource "digitalocean_droplet" "site" {
+  for_each = local.sites
+  name     = each.key
+  region   = each.value
+  image    = "ubuntu-22-04-x64"
+  size     = "s-1vcpu-1gb"
+}
+
+resource "digitalocean_record" "site" {
+  for_each = local.sites
+  domain   = "example.com"
+  type     = "A"
+  name     = each.key
+  value    = digitalocean_droplet.site[each.key].ipv4_address
+}` -}}
+
+<div class="tx-container">
+  <div class="tx-code-compare">
+    <figure class="tx-code-panel">
+      <figcaption class="tx-code-panel-label">
+        <span class="tx-code-panel-lang">terranix</span>
+        <span class="tx-code-panel-file">config.nix</span>
+      </figcaption>
+      {{ highlight $terranixSample "nix" "" }}
+    </figure>
+    <figure class="tx-code-panel">
+      <figcaption class="tx-code-panel-label">
+        <span class="tx-code-panel-lang">HCL</span>
+        <span class="tx-code-panel-file">main.tf</span>
+      </figcaption>
+      {{ highlight $hclSample "hcl" "" }}
+    </figure>
+  </div>
+</div>

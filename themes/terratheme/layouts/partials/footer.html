@@ -1,0 +1,11 @@
+<footer class="tx-footer" role="contentinfo">
+  <div class="tx-footer-brand">
+    <img src="{{ "img/terranix.svg" | relURL }}" alt="">
+    <span>{{ .Site.Params.tagline | default "terranix — infrastructure as nix code · MIT licensed" }}</span>
+  </div>
+  <div class="tx-footer-links">
+    {{ range .Site.Params.community }}
+      <a href="{{ .url }}" {{ if hasPrefix .url "http" }}rel="noopener"{{ end }}>{{ .name }}</a>
+    {{ end }}
+  </div>
+</footer>
